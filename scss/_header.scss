@@ -1,0 +1,223 @@
+@use "vars" as *;
+
+#header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: white;
+	@include flex(between,center,wrap);
+	z-index: 99;
+	padding: 15px 0 0 40px;
+	.header-logo{
+		display: block;
+		width: 236px;
+	}
+	.header-nav{
+		width: calc(100% - 250px);
+		@include flex(end,center,wrap);
+		@include mq(tb){
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 100vh;
+			padding: 60px 20px 0;
+			overflow-y: scroll;
+			&.active{
+				display: block;
+			}
+		}
+		&__note{
+			@include flex(end,center,wrap);
+			width: 100%;
+			padding: 0 15px 0 0;
+			margin-bottom: 15px;
+			ul{
+				@include flex(end,center,wrap);
+				margin: 0 15px 0 0;
+				li{
+					padding: 0 12px;
+					a{
+						display: block;
+						color: $gray;
+						@include font-size(14);
+						font-weight: 500;
+					}
+				}
+			}
+			&-tel{
+				line-height: 1;
+				border-left: 1px solid $gray;
+				@include font-size(12);
+				color: black;
+				position: relative;
+				padding: 0 0 0 50px;
+				&:before{
+					content: "";
+					width: 18px;
+					height: 18px;
+					background: url("../img/common/icon-tel.svg")no-repeat;
+					background-size: 100%;
+					position: absolute;
+					@include v-align;
+					left: 20px;
+				}
+				&-item{
+					margin-bottom: 4px;
+					&:last-child{
+						margin-bottom: 0;
+					}
+				}
+				a{
+					display: inline-block;
+					@include font-size(17);
+					font-weight: bold;
+				}
+			}
+		}
+		&__menu{
+			display: flex;
+			flex-wrap: wrap;
+			align-items: flex-end;
+			margin: 0 12px 0 0;
+			@include mq(tb){
+				display: block;
+			}
+			&-item{
+				@include flex(center,center,wrap);
+				padding: 16px;
+				>a{
+					display: block;
+					@include font-size(16);
+					font-weight: 600;
+					color: black;
+					padding: 0 0;
+				}
+			}
+			&-sub{
+				display: inline-block;
+				position: relative;
+				margin: 0 0 0 7px;
+				&:after{
+					content: "";
+					border: solid black;
+					border-width: 0 1px 1px 0;
+					display: inline-block;
+					padding: 3px;
+					transform: rotate(45deg);
+				}
+			}
+
+		}
+		&__submenu{
+			display: none;
+		}
+		&__btn{
+			width: 184px;
+			height: 55px;
+			@include flex(center,center,wrap);
+			align-content: space-evenly;
+			text-align: center;
+			position: relative;
+			background: black;
+			color: white;
+			@include font-size(16);
+			line-height: 1;
+			font-weight: 500;
+			padding: 0 0 3px 20px;
+			span{
+				display: block;
+				width: 100%;
+			}
+			small{
+				display: block;
+				width: 100%;
+				@include font-size(12);
+			}
+			&:before{
+				content: "";
+				width: 18px;
+				height: 15px;
+				background: url("../img/common/icon-email.svg")no-repeat;
+				background-size: 100%;
+				position: absolute;
+				@include v-align;
+				left: 20px;
+			}
+		}
+	}
+	.js-mobile {
+		width: 26px;
+		height: 30px;
+		position: absolute;
+		right: 20px;
+		@include v-align;
+		cursor: pointer;
+		z-index: 12;
+		display: none;
+		@include mq(tb){
+			display: block;
+		}
+		span{
+			position: absolute;
+			@include v-align;
+			display: block;
+			width: 100%;
+			height: 2px;
+			background: #333;
+			border-radius: 3px;
+			&:before,&:after{
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #333;
+				content: '';
+				-webkit-transition: -webkit-transform 0.3s;
+				transition: transform 0.3s;
+				border-radius: 3px;
+			}
+			&:before{
+				-webkit-transform: translateY(-250%);
+				transform: translateY(-250%);
+				top: -6px;
+			}
+			&:after{
+				-webkit-transform: translateY(250%);
+				transform: translateY(250%);
+				bottom: -6px;
+			}
+		}
+		&--close {
+			span{
+				background-color: transparent;
+				&:before,&:after{
+					width: 100%;
+					background: #333;
+				}
+				&:before {
+					-webkit-transform: translateY(0) rotate(45deg);
+					transform: translateY(0) rotate(45deg);
+					top: 2px;
+				}
+				&:after {
+					-webkit-transform: translateY(0) rotate(-45deg);
+					transform: translateY(0) rotate(-45deg);
+					bottom: -2px;
+				}
+			}
+		}
+	}
+}
+
+
+.js-locked {
+	overflow: hidden;
+	-ms-touch-action: none;
+	touch-action: none;
+	body {
+		-webkit-overflow-scrolling: auto;
+	}
+}
